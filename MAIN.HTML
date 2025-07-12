@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sortz</title>
+  <link rel="icon" href="../1.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    
+  </style>
+</head>
+<body>
+  <h1 class="hero-title"> SORTZ </h1>
+    
+  </div>
+  <div id="controls">
+    <select id="algorithm">
+      <option value="bubble">Bubble Sort</option>
+      <option value="insertion">Insertion Sort</option>
+      <option value="merge">Merge Sort</option>
+      <option value="quick">Quick Sort</option>
+      <option value="selection">Selection Sort</option>
+      <option value="heap">Heap Sort</option>
+    </select>
+
+    <button onclick="startSort()">▶️ Start</button>
+    <button onclick="pauseResumeSort()">⏸️ Pause/Resume</button>
+    <button onclick="resetSort()">🔄 Reset</button>
+    <button onclick="generateArray()">🎲 New Array</button>
+
+    <label>Speed: <input id="speed" type="range" min="1" max="999" value="500" /></label>
+    <label>Array Size: <input id="size" type="range" min="10" max="100" value="50" /></label>
+  </div>
+  <div id="algorithm-description" style="margin-top:10px; font-style:normal"></div>
+  <div class="info-bar">
+    <p id="step-counter">Steps: 0</p>
+  </div>
+
+  <div id="array-container"></div>
+
+  <footer>
+    <a href="https://www.linkedin.com/in/siddesha-s-a55a12260/" target="_blank">
+      <button id="footer-btn">Developed by Siddesha S</button>
+    </a>
+  </footer>
+
+<audio id="compareSound" src="../audio.mp3" preload="auto"></audio>
+
+  <script src="script1.js"></script>
+</body>
+</html>
