@@ -572,10 +572,17 @@ body {
     min-width: 0;
   }
 
-  #controls button,
   #controls select,
+  #controls button,
+  #controls label,
   #controls input[type='range'] {
     width: 100%;
+  }
+
+  #controls select,
+  #controls button,
+  #controls label {
+    grid-column: auto;
   }
 }
 
