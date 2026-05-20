@@ -562,3 +562,20 @@ body {
   }
 }
 
+@media (max-width: 860px) {
+  #controls {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 14px;
+  }
+
+  #controls > * {
+    min-width: 0;
+  }
+
+  #controls button,
+  #controls select,
+  #controls input[type='range'] {
+    width: 100%;
+  }
+}
+
