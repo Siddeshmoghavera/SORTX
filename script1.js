@@ -352,9 +352,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const nightModeToggle = document.getElementById("night-mode-toggle");
   if (nightModeToggle) {
+    const updateThemeButton = () => {
+      const isNight = document.body.classList.contains("night-mode");
+      nightModeToggle.innerText = isNight ? "☀️ Light Mode" : "🌙 Dark Mode";
+    };
+
     nightModeToggle.addEventListener("click", () => {
       document.body.classList.toggle("night-mode");
+      updateThemeButton();
     });
+
+    updateThemeButton();
   }
 
   const algorithmDescriptions = {
@@ -370,12 +378,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const algorithmDescription = document.getElementById("algorithm-description");
 
   if (algorithmSelect && algorithmDescription) {
-    algorithmSelect.addEventListener("change", () => {
-      const algo = algorithmSelect.value;
-      algorithmDescription.innerText = algorithmDescriptions[algo] || "";
-    });
+    algorithmDescription.innerText = algorithmDescriptions[algorithmSelect.value] || "";
+  }
 
-    // Initialize description on load
-    algorithmDescription.innerText = algorithmDescriptions[algorithmSelect.value];
+  const langTabs = document.querySelectorAll("#code-tabs .tab");
+  const codePanels = document.querySelectorAll("#code-examples .code-panel");
+
+  let activeAlgo = algorithmSelect.value;
+  let activeLang = "python";
+
+  function updateActivePanels() {
+    codePanels.forEach(panel => {
+      const isActive = panel.dataset.algo === activeAlgo && panel.dataset.lang === activeLang;
+      if (isActive) {
+        panel.style.display = "block";
+        panel.classList.add("active");
+      } else {
+        panel.style.display = "none";
+        panel.classList.remove("active");
+      }
+    });
+  }
+
+  function switchLangTab(lang) {
+    activeLang = lang;
+    langTabs.forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.lang === lang);
+    });
+    updateActivePanels();
+  }
+
+  algorithmSelect.addEventListener("change", () => {
+    activeAlgo = algorithmSelect.value;
+    algorithmDescription.innerText = algorithmDescriptions[activeAlgo] || "";
+    updateActivePanels();
+  });
+
+  langTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      switchLangTab(tab.dataset.lang);
+    });
+  });
+
+  if (langTabs.length) {
+    switchLangTab(activeLang);
   }
 });

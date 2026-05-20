@@ -10,7 +10,7 @@
     
   </style>
 </head>
-<body>
+<body class="night-mode">
   <h1 class="hero-title"> SORTZ </h1>
     
   </div>
@@ -28,21 +28,699 @@
     <button onclick="pauseResumeSort()">⏸️ Pause/Resume</button>
     <button onclick="resetSort()">🔄 Reset</button>
     <button onclick="generateArray()">🎲 New Array</button>
+    <button id="night-mode-toggle">☀️ Light Mode</button>
 
     <label>Speed: <input id="speed" type="range" min="1" max="999" value="500" /></label>
     <label>Array Size: <input id="size" type="range" min="10" max="100" value="50" /></label>
   </div>
   <div id="algorithm-description" style="margin-top:10px; font-style:normal"></div>
+
   <div class="info-bar">
     <p id="step-counter">Steps: 0</p>
   </div>
 
   <div id="array-container"></div>
 
+  <section id="code-examples">
+    <h2>Sorting Algorithm Code Examples</h2>
+    <p>Choose an algorithm and a language to view the example implementation.</p>
+
+    <div id="code-tabs" class="code-tabs">
+      <button class="tab active" data-lang="python">Python</button>
+      <button class="tab" data-lang="c">C</button>
+      <button class="tab" data-lang="java">Java</button>
+      <button class="tab" data-lang="javascript">JavaScript</button>
+    </div>
+
+    <div class="code-block code-panel active" data-algo="bubble" data-lang="python">
+      <pre><code>def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    bubble_sort(arr)
+    print(arr)
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="bubble" data-lang="c">
+      <pre><code>#include <stdio.h>
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int swapped = 0;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = 1;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    bubbleSort(arr, n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="bubble" data-lang="java">
+      <pre><code>public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped) break;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        bubbleSort(arr);
+        for (int value : arr) {
+            System.out.print(value + " ");
+        }
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="bubble" data-lang="javascript">
+      <pre><code>function bubbleSort(arr) {
+    const n = arr.length;
+    for (let i = 0; i < n; i++) {
+        let swapped = false;
+        for (let j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                swapped = true;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+bubbleSort(arr);
+console.log(arr);
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="insertion" data-lang="python">
+      <pre><code>def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    insertion_sort(arr)
+    print(arr)
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="insertion" data-lang="c">
+      <pre><code>#include <stdio.h>
+
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    insertionSort(arr, n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="insertion" data-lang="java">
+      <pre><code>public class InsertionSort {
+    public static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        insertionSort(arr);
+        for (int value : arr) {
+            System.out.print(value + " ");
+        }
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="insertion" data-lang="javascript">
+      <pre><code>function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        const key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+insertionSort(arr);
+console.log(arr);
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="merge" data-lang="python">
+      <pre><code>def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print(merge_sort(arr))
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="merge" data-lang="c">
+      <pre><code>#include <stdio.h>
+#include <stdlib.h>
+
+void merge(int arr[], int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    int *L = malloc(n1 * sizeof(int));
+    int *R = malloc(n2 * sizeof(int));
+    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) arr[k++] = L[i++];
+        else arr[k++] = R[j++];
+    }
+    while (i < n1) arr[k++] = L[i++];
+    while (j < n2) arr[k++] = R[j++];
+    free(L);
+    free(R);
+}
+
+void mergeSort(int arr[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    mergeSort(arr, 0, n - 1);
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    return 0;
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="merge" data-lang="java">
+      <pre><code>public class MergeSort {
+    public static void merge(int[] arr, int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+        for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+        for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+        int i = 0, j = 0, k = l;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) arr[k++] = L[i++];
+            else arr[k++] = R[j++];
+        }
+        while (i < n1) arr[k++] = L[i++];
+        while (j < n2) arr[k++] = R[j++];
+    }
+
+    public static void mergeSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int m = l + (r - l) / 2;
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
+            merge(arr, l, m, r);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        mergeSort(arr, 0, arr.length - 1);
+        for (int value : arr) System.out.print(value + " ");
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="merge" data-lang="javascript">
+      <pre><code>function mergeSort(arr) {
+    if (arr.length <= 1) return arr;
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    const result = [];
+    let i = 0, j = 0;
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) result.push(left[i++]);
+        else result.push(right[j++]);
+    }
+    return result.concat(left.slice(i)).concat(right.slice(j));
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+console.log(mergeSort(arr));
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="quick" data-lang="python">
+      <pre><code>def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quick_sort(left) + middle + quick_sort(right)
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print(quick_sort(arr))
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="quick" data-lang="c">
+      <pre><code>#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    quickSort(arr, 0, n - 1);
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    return 0;
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="quick" data-lang="java">
+      <pre><code>public class QuickSort {
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        swap(arr, i + 1, high);
+        return i + 1;
+    }
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        quickSort(arr, 0, arr.length - 1);
+        for (int value : arr) System.out.print(value + " ");
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="quick" data-lang="javascript">
+      <pre><code>function swap(arr, i, j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+function partition(arr, low, high) {
+    const pivot = arr[high];
+    let i = low - 1;
+    for (let j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr, i, j);
+        }
+    }
+    swap(arr, i + 1, high);
+    return i + 1;
+}
+
+function quickSort(arr, low = 0, high = arr.length - 1) {
+    if (low < high) {
+        const pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+quickSort(arr);
+console.log(arr);
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="selection" data-lang="python">
+      <pre><code>def selection_sort(arr):
+    for i in range(len(arr)):
+        min_idx = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    selection_sort(arr)
+    print(arr)
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="selection" data-lang="c">
+      <pre><code>#include <stdio.h>
+
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
+            }
+        }
+        int temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    selectionSort(arr, n);
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    return 0;
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="selection" data-lang="java">
+      <pre><code>public class SelectionSort {
+    public static void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        selectionSort(arr);
+        for (int value : arr) System.out.print(value + " ");
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="selection" data-lang="javascript">
+      <pre><code>function selectionSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+selectionSort(arr);
+console.log(arr);
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="heap" data-lang="python">
+      <pre><code>def heapify(arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+
+def heap_sort(arr):
+    n = len(arr)
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, i, 0)
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    heap_sort(arr)
+    print(arr)
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="heap" data-lang="c">
+      <pre><code>#include <stdio.h>
+
+void heapify(int arr[], int n, int i) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+    if (left < n && arr[left] > arr[largest]) largest = left;
+    if (right < n && arr[right] > arr[largest]) largest = right;
+    if (largest != i) {
+        int temp = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = temp;
+        heapify(arr, n, largest);
+    }
+}
+
+void heapSort(int arr[], int n) {
+    for (int i = n / 2 - 1; i >= 0; i--) heapify(arr, n, i);
+    for (int i = n - 1; i > 0; i--) {
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+        heapify(arr, i, 0);
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    heapSort(arr, n);
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    return 0;
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="heap" data-lang="java">
+      <pre><code>public class HeapSort {
+    public static void heapify(int[] arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < n && arr[left] > arr[largest]) largest = left;
+        if (right < n && arr[right] > arr[largest]) largest = right;
+        if (largest != i) {
+            int temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+            heapify(arr, n, largest);
+        }
+    }
+
+    public static void heapSort(int[] arr) {
+        int n = arr.length;
+        for (int i = n / 2 - 1; i >= 0; i--) heapify(arr, n, i);
+        for (int i = n - 1; i > 0; i--) {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            heapify(arr, i, 0);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        heapSort(arr);
+        for (int value : arr) System.out.print(value + " ");
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="code-block code-panel" data-algo="heap" data-lang="javascript">
+      <pre><code>function heapify(arr, n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
+    if (left < n && arr[left] > arr[largest]) largest = left;
+    if (right < n && arr[right] > arr[largest]) largest = right;
+    if (largest !== i) {
+        [arr[i], arr[largest]] = [arr[largest], arr[i]];
+        heapify(arr, n, largest);
+    }
+}
+
+function heapSort(arr) {
+    const n = arr.length;
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        heapify(arr, n, i);
+    }
+    for (let i = n - 1; i > 0; i--) {
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+        heapify(arr, i, 0);
+    }
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+heapSort(arr);
+console.log(arr);
+</code></pre>
+    </div>
+  </section>
+
   <footer>
-    <a href="https://www.linkedin.com/in/siddesha-s-a55a12260/" target="_blank">
+    <a href="https://www.linkedin.com/in/siddesha-s/" target="_blank">
       <button id="footer-btn">Developed by -  Siddesha S</button>
     </a>
+    <span class="footer-version">Version 2.0</span>
   </footer>
 
 <audio id="compareSound" src="audio.mp3" preload="auto"></audio>
