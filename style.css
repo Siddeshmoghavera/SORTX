@@ -564,6 +564,7 @@ body {
 
 @media (max-width: 860px) {
   #controls {
+    display: grid;
     grid-template-columns: repeat(2, minmax(140px, 1fr));
     gap: 14px;
   }
