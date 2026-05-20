@@ -21,7 +21,7 @@ function generateArray() {
   container.innerHTML = "";
 
   for (let i = 0; i < size; i++) {
-    const value = Math.floor(Math.random() * 300) + 20;
+    const value = Math.floor(Math.random() * 231) + 20; // values between 20 and 250
     array.push(value);
 
     const barWrapper = document.createElement("div");
